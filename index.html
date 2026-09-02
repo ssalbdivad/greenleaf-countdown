@@ -18,8 +18,9 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
   body{
-    min-height:100vh;
+    min-height:100vh; min-height:100svh;
     font-family:"Nunito", ui-rounded, "Segoe UI Rounded", "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
     color:var(--ink);
     background:
@@ -65,7 +66,7 @@
     transform:rotate(-1.2deg);
     transition:transform .4s ease;
   }
-  .house:hover{transform:rotate(0deg) scale(1.015)}
+  @media (hover:hover){ .house:hover{transform:rotate(0deg) scale(1.015)} }
   .house img{display:block; width:100%; height:auto}
 
   .target{
@@ -82,7 +83,7 @@
     position:relative; overflow:hidden;
   }
   .bigwrap::after{
-    content:""; position:absolute; left:8%; right:8%; bottom:0; height:6px; border-radius:6px 6px 0 0;
+    content:""; position:absolute; left:0; right:0; bottom:0; height:6px;
     background:linear-gradient(90deg,var(--accent),var(--gold),var(--accent-2),#5ea9e6);
     opacity:.6;
   }
@@ -95,9 +96,9 @@
   .num{
     display:block; font-variant-numeric:tabular-nums; font-weight:900;
     font-size:clamp(46px,15.5vw,190px); line-height:.92; letter-spacing:-.045em;
+    white-space:nowrap;
     background:linear-gradient(180deg,#41567a,#2b3a52);
     -webkit-background-clip:text; background-clip:text; color:transparent;
-    word-break:keep-all;
   }
   .num.tick{animation:pop .4s cubic-bezier(.3,1.5,.5,1)}
   @keyframes pop{0%{transform:scale(1)}35%{transform:scale(1.025)}100%{transform:scale(1)}}
@@ -151,8 +152,33 @@
   #confetti{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:50; display:none}
   .party #confetti{display:block}
 
-  @media (max-width:560px){
-    .clock{grid-template-columns:repeat(2,minmax(0,1fr))}
+  @media (max-width:620px){
+    body{padding-bottom:28px}
+    .eyebrow{padding:.4em .9em; letter-spacing:.04em}
+    h1{margin:.45em 0 .05em; font-size:clamp(26px,7.6vw,40px)}
+    h1 .ave{font-size:.5em}
+    .house{width:88%; border-width:5px; border-radius:20px; margin:12px auto 12px}
+    .target{font-size:12.5px; line-height:1.4; margin:.2em auto 14px; max-width:27em; opacity:.9}
+    .target b{font-weight:800}
+    .bigwrap{border-radius:24px; padding:16px 10px 14px}
+    .caption{font-size:12px; letter-spacing:.14em; margin-bottom:6px}
+    .seclabel{font-size:12px; letter-spacing:.3em; margin-top:.45em}
+
+    /* stack each unit as number-over-label instead of a wrapping sentence */
+    .parts{
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:0; margin-top:14px; font-size:10px;
+      text-transform:uppercase; letter-spacing:.09em;
+    }
+    .parts span{display:flex; flex-direction:column; align-items:center; gap:1px}
+    .parts b{font-size:19px; line-height:1.1}
+    .parts .dot{display:none}
+    footer{margin-top:20px; font-size:12px}
+    .banner{font-size:clamp(24px,8vw,40px)}
+  }
+
+  @media (max-width:620px) and (orientation:landscape){
+    .house{width:min(300px,46%)}
   }
   @media (prefers-reduced-motion:reduce){
     *{animation:none !important; transition:none !important}
@@ -229,30 +255,64 @@
   function render(){
     var left = TARGET - Date.now();
     if (left <= 0){
-      set("secs","0"); set("d","0"); set("h","00"); set("m","00"); set("s","00");
+      set("secs","0"); maybeFit(); set("d","0"); set("h","00"); set("m","00"); set("s","00");
       if (!celebrating) celebrate();
       return;
     }
     var totalSec = Math.ceil(left / 1000);
     set("secs", group(totalSec));
+    maybeFit();
     set("d", String(Math.floor(totalSec / 86400)));
     set("h", pad(Math.floor(totalSec / 3600) % 24));
     set("m", pad(Math.floor(totalSec / 60) % 60));
     set("s", pad(totalSec % 60));
   }
 
+  /* Size the big number to fill the card. A vw-based clamp can't do this:
+     the digit count shrinks as the date nears, and the card is narrower than
+     the viewport by a padding that itself changes with screen size. */
+  var MAX_PX = 190;
+  var fitFor = "";
+
+  function fit(){
+    var el = els.secs;
+    el.style.fontSize = "100px";
+    var avail = el.clientWidth;   // the block's width == the space to fill
+    // A Range measures the glyphs themselves; scrollWidth would just report
+    // the block width back whenever the text is narrower than the card.
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var text = r.getBoundingClientRect().width;
+    if (!avail || !text) { el.style.fontSize = ""; return; }
+    var px = Math.min(MAX_PX, Math.floor(100 * (avail * 0.98) / text));
+    el.style.fontSize = px + "px";
+    fitFor = el.textContent.length + "x" + avail;
+  }
+
+  function maybeFit(){
+    var el = els.secs;
+    if (fitFor !== el.textContent.length + "x" + el.clientWidth) fit();
+  }
+
   render();
+  fit();
   setInterval(render, 250);
+  window.addEventListener("resize", fit);
+  window.addEventListener("orientationchange", fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 
   /* ---------- floating background bits ---------- */
   (function floaties(){
     var box = document.getElementById("floaties");
     var glyphs = ["🍃","💚","🏡","🌸","✨","🍂"];
-    for (var i = 0; i < 18; i++){
+    var small = window.matchMedia("(max-width: 620px)").matches;
+    var n = small ? 9 : 18;
+    for (var i = 0; i < n; i++){
       var s = document.createElement("span");
       s.textContent = glyphs[i % glyphs.length];
       s.style.left = (Math.random() * 100) + "%";
-      s.style.fontSize = (14 + Math.random() * 22) + "px";
+      s.style.fontSize = ((small ? 12 : 14) + Math.random() * (small ? 12 : 22)) + "px";
+      s.style.opacity = small ? .22 : "";
       s.style.animationDuration = (14 + Math.random() * 16) + "s";
       s.style.animationDelay = (-Math.random() * 30) + "s";
       box.appendChild(s);
