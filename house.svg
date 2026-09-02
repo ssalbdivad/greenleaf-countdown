@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="600" height="420" role="img" aria-label="Illustration of 15 Greenleaf Ave, Medford MA">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bfe8ff"/><stop offset="100%" stop-color="#eaf7ff"/>
+    </linearGradient>
+    <linearGradient id="siding" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fffdf7"/><stop offset="100%" stop-color="#f0e6d6"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b7f9e"/><stop offset="100%" stop-color="#4a5c78"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe9a8"/><stop offset="100%" stop-color="#ffd166"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="420" fill="url(#sky)"/>
+
+  <!-- clouds -->
+  <g fill="#ffffff" opacity=".85">
+    <ellipse cx="90" cy="70" rx="42" ry="22"/><ellipse cx="125" cy="72" rx="30" ry="17"/><ellipse cx="60" cy="78" rx="26" ry="15"/>
+    <ellipse cx="480" cy="52" rx="36" ry="19"/><ellipse cx="512" cy="56" rx="26" ry="14"/>
+  </g>
+
+  <!-- back trees -->
+  <g>
+    <rect x="48" y="240" width="12" height="60" rx="5" fill="#8b6a4a"/>
+    <circle cx="54" cy="222" r="44" fill="#5aa86a"/><circle cx="26" cy="240" r="30" fill="#66b877"/><circle cx="82" cy="242" r="28" fill="#4e9a5e"/>
+    <rect x="540" y="248" width="12" height="56" rx="5" fill="#8b6a4a"/>
+    <circle cx="546" cy="228" r="40" fill="#59a86b"/><circle cx="576" cy="246" r="26" fill="#4e9a5e"/>
+  </g>
+
+  <!-- lawn -->
+  <rect x="0" y="300" width="600" height="120" fill="#8fd07f"/>
+  <path d="M0 300 Q 300 282 600 300 L600 320 L0 320 Z" fill="#a3dc90"/>
+
+  <!-- house body -->
+  <rect x="170" y="180" width="260" height="130" rx="6" fill="url(#siding)" stroke="#d9cbb4" stroke-width="2"/>
+  <!-- clapboard lines -->
+  <g stroke="#e6d9c4" stroke-width="1.5">
+    <line x1="172" y1="200" x2="428" y2="200"/><line x1="172" y1="220" x2="428" y2="220"/>
+    <line x1="172" y1="240" x2="428" y2="240"/><line x1="172" y1="260" x2="428" y2="260"/>
+    <line x1="172" y1="280" x2="428" y2="280"/><line x1="172" y1="300" x2="428" y2="300"/>
+  </g>
+
+  <!-- roof -->
+  <path d="M150 186 L300 96 L450 186 Z" fill="url(#roof)"/>
+  <path d="M150 186 L300 96 L450 186 Z" fill="none" stroke="#3c4c65" stroke-width="3" stroke-linejoin="round"/>
+  <!-- chimney -->
+  <rect x="368" y="112" width="26" height="52" rx="3" fill="#c26b5a"/>
+  <rect x="364" y="106" width="34" height="10" rx="3" fill="#a95848"/>
+
+  <!-- dormer -->
+  <path d="M262 150 L300 122 L338 150 Z" fill="#5b6e8c"/>
+  <rect x="278" y="150" width="44" height="30" fill="#f7f1e6" stroke="#d9cbb4" stroke-width="2"/>
+  <rect x="284" y="156" width="14" height="18" fill="#9fd6ef"/><rect x="302" y="156" width="14" height="18" fill="#9fd6ef"/>
+
+  <!-- windows -->
+  <g>
+    <rect x="196" y="206" width="46" height="54" rx="3" fill="#9fd6ef" stroke="#fff" stroke-width="4"/>
+    <line x1="219" y1="206" x2="219" y2="260" stroke="#fff" stroke-width="3"/>
+    <line x1="196" y1="233" x2="242" y2="233" stroke="#fff" stroke-width="3"/>
+    <rect x="186" y="204" width="10" height="58" rx="2" fill="#3f7d55"/><rect x="242" y="204" width="10" height="58" rx="2" fill="#3f7d55"/>
+
+    <rect x="358" y="206" width="46" height="54" rx="3" fill="#9fd6ef" stroke="#fff" stroke-width="4"/>
+    <line x1="381" y1="206" x2="381" y2="260" stroke="#fff" stroke-width="3"/>
+    <line x1="358" y1="233" x2="404" y2="233" stroke="#fff" stroke-width="3"/>
+    <rect x="348" y="204" width="10" height="58" rx="2" fill="#3f7d55"/><rect x="404" y="204" width="10" height="58" rx="2" fill="#3f7d55"/>
+  </g>
+
+  <!-- door + portico -->
+  <rect x="276" y="228" width="48" height="82" rx="4" fill="#3f7d55" stroke="#2f6141" stroke-width="2"/>
+  <circle cx="314" cy="270" r="3.5" fill="#ffd166"/>
+  <rect x="286" y="240" width="12" height="16" rx="2" fill="url(#glow)"/><rect x="302" y="240" width="12" height="16" rx="2" fill="url(#glow)"/>
+  <path d="M266 228 h68 l-6 -12 h-56 z" fill="#ffffff" stroke="#e2d6c2" stroke-width="2"/>
+  <!-- house number -->
+  <rect x="330" y="232" width="30" height="20" rx="4" fill="#ffffff" stroke="#d9cbb4" stroke-width="1.5"/>
+  <text x="345" y="247" font-family="Georgia, serif" font-size="14" font-weight="bold" fill="#3f5068" text-anchor="middle">15</text>
+
+  <!-- steps + path -->
+  <rect x="270" y="310" width="60" height="8" rx="3" fill="#e7dcc8"/>
+  <rect x="264" y="318" width="72" height="8" rx="3" fill="#dbcfb8"/>
+  <path d="M276 326 L324 326 L344 420 L256 420 Z" fill="#d9d2c4"/>
+
+  <!-- bushes -->
+  <g>
+    <circle cx="200" cy="304" r="20" fill="#4e9a5e"/><circle cx="224" cy="308" r="15" fill="#59a86b"/>
+    <circle cx="400" cy="304" r="20" fill="#4e9a5e"/><circle cx="376" cy="308" r="15" fill="#59a86b"/>
+  </g>
+
+  <!-- flowers -->
+  <g>
+    <circle cx="188" cy="330" r="5" fill="#ff8fb1"/><circle cx="214" cy="336" r="5" fill="#ffd166"/><circle cx="236" cy="330" r="5" fill="#ff8fb1"/>
+    <circle cx="366" cy="332" r="5" fill="#ffd166"/><circle cx="392" cy="336" r="5" fill="#ff8fb1"/><circle cx="416" cy="330" r="5" fill="#ffd166"/>
+  </g>
+
+  <!-- mailbox -->
+  <rect x="470" y="300" width="6" height="48" rx="3" fill="#8b6a4a"/>
+  <rect x="456" y="284" width="34" height="20" rx="9" fill="#c26b5a"/>
+  <rect x="486" y="290" width="4" height="10" rx="2" fill="#ffd166"/>
+</svg>
