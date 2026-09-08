@@ -1,6 +1,6 @@
 # 🏡 15 Greenleaf Ave — Countdown
 
-A giant, cute, full-page countdown to **Thursday, September 17, 2026 at 12:00 PM** (Medford, MA time)
+A giant, cute, full-page countdown to **Tuesday, September 15, 2026 at 11:00 AM** (Medford, MA time)
 for 15 Greenleaf Ave, Medford, Massachusetts.
 
 The countdown is one giant number of seconds, with the days / hours / minutes / seconds
